@@ -1,0 +1,82 @@
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 12%;
+  color: rgb(90, 218, 118);
+}
+.contactcontainer {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  /* width: 40%; */
+  /* justify-content: center; */
+  align-items: center;
+  flex-wrap: wrap;
+  height: 640px;
+  margin-top: 20px;
+  /* border: 1px solid; */
+}
+.wrapper {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  /* padding: 10%; */
+  flex-wrap: wrap;
+  width: 30rem;
+  /* flex-direction: column; */
+  height: 600px;
+
+  /* background: linear-gradient(to top, #71f5c2 0%, #71fa83 100%); */
+  /* border: 1px solid red; */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+.formBox{
+  width: 80%;
+  /* border: 1px solid teal; */
+
+}
+.inpboxx {
+  width: 100%;
+  border: 1px solid #aaa;
+  background-color: rgb(221, 221, 221);
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.button73 {
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 30em;
+  border-style: none;
+  box-shadow: #48bb78 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: -0.24px;
+
+  outline: none;
+  padding: 1rem 1.1rem;
+  quotes: auto;
+  text-align: center;
+  /* margin-left: 34px; */
+
+  text-decoration: none;
+  transition: all 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 5%;
+}
+
+.button73:active {
+  transform: scale(1.025);
+}
