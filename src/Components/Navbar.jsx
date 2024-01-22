@@ -1,169 +1,160 @@
-import resume from "./Jyoti_Ranjan_Ghibila_Resume.pdf";
-
+import React, { useState } from "react";
+import { Avatar, Box, Flex, Icon, Image, Text } from "@chakra-ui/react";
+import resume from "../assets/Jyotiranjan_CV.pdf";
+import Celeb from "../assets/celeb.gif";
+import CelebDownload from "../assets/downloadCom.gif";
+import { useScrollTop } from "../hooks/ScrollTop";
+import "../../src/App.css";
 import {
-  Box,
-  Flex,
-  Link,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  HStack,
-  IconButton,
-  Button,
-  useColorMode,
-} from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+  Home as HomeIcon,
+  Braces,
+  MessageCircleCode,
+  MonitorSmartphone,
+  Contact,
+  ArrowDownToLine,
+} from "lucide-react";
+import avatar from "../assets/avatar.jpg";
+const Navbar = ({ hHom, hSkills, hProjects, hContact }) => {
+  const scrolled = useScrollTop();
+  const [downloadAnim, setDownloadAnim] = useState(false);
+  const animsrc = downloadAnim ? CelebDownload : Celeb;
 
-import "../Styles/Styles.css";
+  const navSection = [
+    {
+      icon: HomeIcon,
+      title: "Home",
+      ref: hHom,
+    },
+    {
+      icon: Braces,
+      title: "About",
+      ref: hHom,
+    },
+    {
+      icon: MessageCircleCode,
+      title: "Skills",
+      ref: hSkills,
+    },
+    {
+      icon: MonitorSmartphone,
+      title: "Projects",
+      ref: hProjects,
+    },
+    {
+      icon: Contact,
+      title: "Contact",
+      ref: hContact,
+    },
+  ];
 
-const NavLin = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-  >
-    {children}
-  </Link>
-);
-
-export default function Navbar({
-  hHom,
-  hAbout,
-  hSkills,
-  hProjects,
-  hGith,
-  hContact,
-}) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode, toggleColorMode } = useColorMode();
+  const handleResumeDownload = async (e) => {
+    setDownloadAnim(true);
+    setTimeout(() => {
+      setDownloadAnim(false);
+    }, 9000);
+  };
   return (
-    <>
-      <Box
-        bg={useColorModeValue("gray.100", "gray.900")}
-        px={4}
-        position={"fixed"}
-        zIndex={3}
-        width={"100%"}
+    <Flex
+      position={"sticky"}
+      top={0}
+      zIndex={99999}
+      border={scrolled ? "1px solid rgba(255,255,255,0.2)" : "none"}
+      padding={{ base: "5px", sm: "8px", md: "12px", lg: "18px" }}
+      borderRadius={"50px"}
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      background={"rgba(255,255,255,0.14)"}
+      style={{
+        WebkitBackdropFilter: "blur(3px)",
+      }}
+      transition={"all ease 0.5s"}
+      backdropFilter={"blur(3px)"}
+      overflow={"hidden"}
+      _hover={{
+        boxShadow: "0px 0px 20px 1px #ffbb763f",
+      }}
+    >
+      <Flex
+        display={{ base: "none", md: "none", lg: "flex" }}
+        alignItems={"center"}
       >
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack
-            spacing={{ base: "8", md: "8", lg: "40" }}
+        <Avatar name="Jyoti Ranjan" src={avatar} />
+      </Flex>
+      {navSection?.map((el, i) => (
+        <Flex key={i} alignItems={"center"} justifyContent={"space-around"}>
+          <Flex
+            padding={{ base: "2px", sm: "3px", md: "5px", lg: "7px" }}
+            justifyContent={"space-between"}
             alignItems={"center"}
+            direction={{ base: "column", md: "row" }}
+            gap={{ base: "5px", md: "8px", lg: "10px" }}
+            fontSize={{ base: "12px", sm: "13px", md: "20px" }}
+            color={"white"}
+            cursor={"pointer"}
+            onClick={el.ref}
           >
-            <Box>
-              <span
-                style={{
-                  color: "#48bb78",
-                  fontSize: "22px",
-                  fontWeight: "380",
-                }}
-              >
-                Jyoti
-              </span>
-              <span
-                style={{
-                  color: "#708196",
-                  fontSize: "22px",
-                  fontWeight: "400",
-                }}
-              >
-                Ranjan
-              </span>
-            </Box>
-            <HStack
-              as={"nav"}
-              spacing={10}
-              display={{ base: "none", md: "flex" }}
+            <Icon
+              fontSize={{ base: "17px", md: "20px" }}
+              as={el.icon}
+              color={`${scrolled ? "#e9e5f8" : "#fff"}`}
+            />
+            <Text
+              fontFamily={"-moz-initial"}
+              fontWeight={700}
+              background={`linear-gradient(0deg, #a8a8fd, ${
+                scrolled ? "#c1b6f0" : "#fff"
+              } 35%, #e00a95)`}
+              backgroundSize={"200% auto"}
+              WebkitBackgroundClip={"text"}
+              backgroundClip={"text"}
+              style={{
+                WebkitTextFillColor: "transparent",
+                animation: "gradient 3s linear infinite",
+              }}
             >
-              <Box onClick={hHom}>
-                <NavLin>Home</NavLin>
-              </Box>
-              <Box onClick={hAbout}>
-                <NavLin>About</NavLin>
-              </Box>
-              <Box onClick={hSkills}>
-                <NavLin>Skills</NavLin>
-              </Box>
-              <Box onClick={hProjects}>
-                <NavLin>Projects</NavLin>
-              </Box>
-              <Box onClick={hContact}>
-                <NavLin>Contact</NavLin>
-              </Box>
+              {el.title}
+            </Text>
+          </Flex>
+        </Flex>
+      ))}
+      <a href={resume} download="JyotiRanjan_CV" onClick={()=>{
+        window.open("https://drive.google.com/file/d/1KuoZGtc5K2Y97RRt4h29uS55W2CkfNXi/view")
+      }}>
+      <Flex
+        onClick={handleResumeDownload}
+        as={"button"}
+        position={"relative"}
+        alignItems={"center"}
+        justifyContent={"space-around"}
+        cursor={"pointer"}
+      >
+        <Flex
+          padding={{ base: "2px", sm: "3px", md: "5px", lg: "7px" }}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          direction={{ base: "column", md: "row" }}
+          gap={{ base: "5px", md: "8px", lg: "10px" }}
+          fontSize={{ base: "12px", sm: "13px", md: "19px" }}
+          color={"white"}
+        >
+          <Icon fontSize={{ base: "17px", md: "20px" }} as={ArrowDownToLine} />
 
-              <Box>
-                <a href={resume} download>
-                  <button
-                    className="app__nav-btn"
-                    onClick={() => {
-                      window.open(
-                        "https://drive.google.com/file/d/1H-SrVolTzFQc46VtZt5E1T_5GKgnfUz0/view?usp=share_link"
-                      );
-                    }}
-                  >
-                    Resume
-                  </button>
-                </a>
-              </Box>
-              <Box onClick={toggleColorMode} style={{ cursor: "pointer" }}>
-                {colorMode === "light" ? "Dark" : "Light"}
-              </Box>
-            </HStack>
-          </HStack>
+          <Text fontFamily={"-moz-initial"} fontWeight={500}>
+            Resume
+          </Text>
         </Flex>
 
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              <Box onClick={toggleColorMode} style={{ cursor: "pointer" }}>
-                {colorMode === "light" ? "Dark" : "Light"}
-              </Box>
-              <Box onClick={hHom}>
-                <NavLin>Home</NavLin>
-              </Box>
-              <Box onClick={hAbout}>
-                <NavLin>About</NavLin>
-              </Box>
-              <Box onClick={hSkills}>
-                <NavLin>Skills</NavLin>
-              </Box>
-              <Box onClick={hProjects}>
-                <NavLin>Projects</NavLin>
-              </Box>
-              <Box onClick={hContact}>
-                <NavLin>Contact</NavLin>
-              </Box>
-              <Box>
-                <a href={resume} download>
-                  <button
-                    className="app__nav-btn"
-                    onClick={() => {
-                      window.open(
-                        "https://drive.google.com/file/d/1H-SrVolTzFQc46VtZt5E1T_5GKgnfUz0/view?usp=share_link"
-                      );
-                    }}
-                  >
-                    Resume
-                  </button>
-                </a>
-              </Box>
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-
-      <Box p={4}>Main Content Here</Box>
-    </>
+        <Box position={"absolute"}>
+          <Image
+            height={{ base: "70px", md: "80px" }}
+            src={animsrc}
+            alt="gif"
+          />
+        </Box>
+      </Flex>
+      </a>
+    </Flex>
   );
-}
+};
+
+export default Navbar;

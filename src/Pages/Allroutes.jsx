@@ -1,28 +1,23 @@
-import React, { useEffect, useRef } from "react";
-import "aos/dist/aos.css";
-import Aos from "aos";
-import Navbar from "../Components/Navbar";
-import Foot from "../Components/Foot";
-import About from "./About";
-import Hom from "./Hom";
-import Skills from "./Skills";
-import Projects from "./Projects";
-import Gith from "./Gith";
-import Contact from "./Contact";
+import { Box } from '@chakra-ui/react'
+import React, { useEffect, useRef } from 'react'
+import Aboutme from '../components/Aboutme'
+import Navbar from '../components/Navbar'
+import Skills from '../components/Skills'
+import Projects from '../components/Projects'
+import Touch from '../components/Touch'
+import Aos from 'aos'
 
-import { Box } from "@chakra-ui/react";
+
 const Allroutes = () => {
-  const hom = useRef(null);
-  const about = useRef(null);
+  const home = useRef(null);
   const skills = useRef(null);
   const projects = useRef(null);
-  const gith = useRef(null);
   const contact = useRef(null);
 
-  useEffect(() => {
-    Aos.init({ duration: 3000 });
-  }, []);
-
+  useEffect(()=>{
+    Aos.init({duration: 3000})
+  },[]);
+ 
   const hHom = () => {
     window.scrollTo({
       top: 0,
@@ -30,30 +25,22 @@ const Allroutes = () => {
     });
   };
 
-  const hAbout = () => {
-    window.scrollTo({
-      top: about.current.offsetTop,
-      behavior: "smooth",
-    });
-  };
+
+
   const hSkills = () => {
     window.scrollTo({
       top: skills.current.offsetTop,
       behavior: "smooth",
     });
   };
+ 
   const hProjects = () => {
     window.scrollTo({
       top: projects.current.offsetTop,
       behavior: "smooth",
     });
   };
-  const hGith = () => {
-    window.scrollTo({
-      top: gith.current.offsetTop,
-      behavior: "smooth",
-    });
-  };
+
   const hContact = () => {
     window.scrollTo({
       top: contact.current.offsetTop,
@@ -62,45 +49,27 @@ const Allroutes = () => {
   };
 
   return (
-    <>
-      <Navbar
+    <Box>
+        <Navbar
         hHom={hHom}
-        hAbout={hAbout}
         hSkills={hSkills}
         hProjects={hProjects}
-        hGith={hGith}
         hContact={hContact}
-      />
-      <>
-        <div data-aos="fade-up" ref={hom}>
-          <Hom />
-        </div>
-        <div>
-          <About />
-        </div>
-        <div
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="2000"
-          ref={skills}
-        >
-          <Skills />
-        </div>
-        <div data-aos="fade-up" ref={projects}>
-          <Projects />
-        </div>
-        <div data-aos="flip-left" ref={gith}>
-          <Gith />
-        </div>
-        <div data-aos="flip-right" ref={contact}>
-          <Contact />
-        </div>
-        <div>
-          <Foot />
-        </div>
-      </>
-    </>
-  );
-};
+        />
+        <Box data-aos="fade-in" ref={home}>
+          <Aboutme/>
+        </Box>
+        <Box data-aos="zoom-in" ref={skills}>
+          <Skills/>
+        </Box>
+        <Box data-aos="zoom-in" ref={projects}>
+          <Projects/>
+        </Box>
+        <Box data-aos="zoom-in" ref={contact}>
+          <Touch/>
+        </Box>
+    </Box>
+  )
+}
 
-export default Allroutes;
+export default Allroutes
