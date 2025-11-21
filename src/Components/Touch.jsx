@@ -14,8 +14,13 @@ const Touch = () => {
     window.location.href = `https://wa.me/${phoneNumber}`;
   };
   const handleLinkedin = () => {
-    window.location.href = `https://www.linkedin.com/in/jyoti-ranjan-ghibila-449105206/`;
-  };
+  window.open(
+    "https://www.linkedin.com/in/jyoti-ranjan-ghibila-449105206/",
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
+
 
   return (
     <Flex
