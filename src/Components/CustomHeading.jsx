@@ -4,7 +4,11 @@ import React from "react";
 const CustomHeading = () => {
   const text="JyotiRanjan"
   return (
-    <Heading as="h1" fontFamily={"-moz-initial"} mb={{base:"5px",md:"10px",lg:"19px"}}>
+    <Heading as="h1" fontFamily={"-moz-initial"} 
+    
+            fontSize={{ base: "30px", md: "35px", lg: "62px" }}
+            
+    >
       {text &&
         text.split("").map((char, index) => (
           <Box

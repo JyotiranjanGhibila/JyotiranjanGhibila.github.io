@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
-import { Box, Center, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Wrap,
+  WrapItem,
+  Tag,
+} from "@chakra-ui/react";
+
 import CircleMarquee from "./CircleMarquee";
+
 import html from "../assets/skills/html.png";
 import css from "../assets/skills/css.png";
 import js from "../assets/skills/javascript.png";
@@ -17,6 +25,7 @@ import mongoDb from "../assets/skills/mongodb.png";
 import nodejs from "../assets/skills/node-js.png";
 import mongoose from "../assets/skills/mongoose.png";
 import express from "../assets/skills/express.png";
+
 import chatgpt from "../assets/tools/chatgpt.png";
 import figma from "../assets/tools/figma.png";
 import git from "../assets/tools/git.png";
@@ -24,6 +33,7 @@ import github from "../assets/tools/github.png";
 import jira from "../assets/tools/jira.png";
 import postman from "../assets/tools/postman.png";
 import vscode from "../assets/tools/vscode.png";
+
 import projectStyle from "../styles/projects.module.css";
 
 const Skills = () => {
@@ -59,19 +69,15 @@ const Skills = () => {
     ],
   };
 
-  const exp = [
-    {
-      name: "Masai School",
-      role: "SDE intern",
-      summary:
-        "As a SDE intern, successfully engineered an elegant Average Performance, resulting in a commendable 15% improvement in user satisfaction. I leveraged AWS services to optimize email and SMS functionalities, achieving a remarkable 30% reduction in server response times. Through strategic optimization of API design, I accomplished a tenfold or more reduction in server costs.",
-    },
-    {
-      name: "Dranzo ",
-      role: "Software Developer",
-      summary:
-        "As a Software Developer at Dranzo, I played a key role in optimizing API endpoints, exceeding performance benchmarks. I successfully implemented cost-effective hosting solutions on AWS, leading to a notable reduction in expenses by over 20%. Additionally, I actively contributed to the creation of innovative solutions for clients in the IT service and consulting domain.",
-    },
+  const skillTags = [
+    "React.js", "Next.js", "Node.js", "TypeScript",
+    "Express.js", "MongoDB", "Mongoose",
+    "Redux", "REST API", "Web Crawling",
+    "Puppeteer", "Selenium", "Automation",
+    "FastAPI", "CosmosDB",
+    "Tailwind CSS", "Chakra UI",
+    "JWT Auth", "Microservices",
+    "Git", "Postman", "Jira"
   ];
 
   useEffect(() => {
@@ -90,79 +96,52 @@ const Skills = () => {
 
     document
       .getElementsByClassName(projectStyle.cards)[0]
-      .addEventListener("mousemove", handleMouseMove);
+      ?.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       document
         .getElementsByClassName(projectStyle.cards)[0]
-        .removeEventListener("mousemove", handleMouseMove);
+        ?.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
     <Flex
-      mt={"12px"}
-      overflow={"hidden"}
+      mt="22px"
+      overflow="hidden"
       flexDir={{ base: "column", md: "column", lg: "row" }}
-      background={"rgba(255,255,255,0.04)"}
-      style={{
-        WebkitBackdropFilter: "blur(3px)",
-      }}
-      borderRadius={"12px"}
-      backdropFilter={"blur(3px)"}
-      alignItems={"center"}
-      justifyContent={"space-around"}
-      padding={{ base: "5px", sm: "8px", md: "12px", lg: "18px" }}
+      background="rgba(255,255,255,0.04)"
+      style={{ WebkitBackdropFilter: "blur(3px)" }}
+      borderRadius="12px"
+      backdropFilter="blur(3px)"
+      alignItems="center"
+      justifyContent="space-between"
+      padding={{ base: "25px", md: "40px", lg: "85px" }}
+      gap="20px"
     >
       <CircleMarquee pack={skillLogo} />
-      <Flex flexDirection={"column"} justifyContent={"space-between"} alignItems={"center"}>
-        <Heading 
-         backgroundImage={"linear-gradient(0deg, #4039a7, #d647db)"}
-         backgroundClip={"text"}
-         color={"transparent"}
-        fontSize={{base:"20px",md:"23px",lg:"39px"}} fontWeight={900} mb={{base:"10px",md:"17px",lg:"22px"}}>1 year of Experience</Heading>
-        <Grid
-          className={projectStyle.cards}
-          gridTemplateColumns={{base:"repeat(1,1fr)",md:"repeat(2,1fr)"}}
-          gap={"8px"}
-        >
-          {
-            exp?.map((el,i)=>{
-              return(
-                <Box
-                key={i}
-                className={projectStyle.card}
-                height={{ base: "260px", md: "280px", lg: "300px" }}
+
+      {/* SKILL TAG CLOUD */}
+      <Box display={{base:'none', md:'block'}} width={{ base: "100%", lg: "45%" }} mt="10px">
+        <Wrap spacing="12px" justify={{ base: "center", lg: "flex-start" }}>
+          {skillTags.map((tag, i) => (
+            <WrapItem key={i}>
+              <Tag
+                padding="8px 14px"
+                borderRadius="20px"
+                bg="rgba(255,255,255,0.08)"
+                color="white"
+                fontSize="14px"
+                backdropFilter="blur(6px)"
+                _hover={{ bg: "purple.600", cursor: "pointer" }}
+                transition="0.2s"
               >
-                <Box className={projectStyle.cardborder}></Box>
-                <Box
-                  className={projectStyle.cardcontent}
-                  overflow={"hidden"}
-                  padding={{ base: "20px", md: "22px", lg: "30px" }}
-                >
-                  <Center
-                    color={"#fff"}
-                    fontWeight={600}
-                    fontSize={{ base: "15px", md: "20px", lg: "30px" }}
-                  >
-                   {el.name}
-                  </Center>
-                  <Center
-                    color={"#fff"}
-                    fontWeight={200}
-                    fontSize={{ base: "15px", md: "17px", lg: "20px" }}
-                  >
-                    {el.role}
-                  </Center>
-                  <Text textAlign={"center"} fontSize={{base:"12px",md:"13px",lg:"10px"}} width={{base:"200px",md:"250px",lg:"200px"}} color={"#c2c2c2"}>{el.summary}</Text>
-                </Box>
-              </Box>
-              )
-            })
-          }
-         
-        </Grid>
-      </Flex>
+                {tag}
+              </Tag>
+            </WrapItem>
+          ))}
+        </Wrap>
+      </Box>
     </Flex>
   );
 };
